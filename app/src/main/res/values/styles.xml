@@ -1,0 +1,26 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="HeaderTextView">
+        <item name="android:textColor">@color/colorLightSkyBlue</item>
+        <item name="android:layout_width">376dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-condensed-medium</item>
+        <item name="android:lines">@android:integer/status_bar_notification_info_maxnum</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColorLink">#FFFFFF"</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:typeface">serif</item>
+
+    </style>
+    <style name="Header2TextView" parent="HeaderTextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorLightSkyBlue</item>
+    </style>
+</resources>

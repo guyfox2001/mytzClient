@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">tz</string>
+    <string name="FirstMainHeader">Врачи</string>
+    <string name="SecondMainHeader">Детская практика</string>
+    <string-array name="DirectionsSpecialists" >
+        <item>Пульмонология</item>
+        <item>Item2</item>
+        <item>Item3</item>
+        <item>Item4</item>
+    </string-array>
+</resources>
