@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/SecondMainHeader"
         style="@style/Header2TextView"
-        android:layout_width="376"
+        android:layout_width="375dp"
         android:layout_marginTop="4dp"
         android:text="@string/SecondMainHeader"
         android:textSize="18sp"
@@ -34,10 +34,10 @@
         android:id="@+id/spinner"
         android:layout_width="375dp"
         android:layout_height="41dp"
-        android:entries="@array/DirectionsSpecialists"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
         android:textAlignment="textStart"
         android:textDirection="locale"
-
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="138dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SecondMainHeader" />
 </androidx.constraintlayout.widget.ConstraintLayout>
