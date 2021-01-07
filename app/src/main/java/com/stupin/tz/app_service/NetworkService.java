@@ -13,7 +13,7 @@ public class NetworkService {
     private Retrofit retrofit;
 
     public NetworkService() {
-            InstanceURL = "http://testapi.simplex48.ru:81/api/Web/";
+            InstanceURL = "https://testapi.simplex48.ru/api/Web/";
             retrofit = new Retrofit.Builder()
                     .baseUrl(InstanceURL)
                     .addConverterFactory(GsonConverterFactory.create())

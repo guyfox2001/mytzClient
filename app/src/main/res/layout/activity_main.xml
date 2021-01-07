@@ -12,32 +12,49 @@
     <TextView
         android:id="@+id/FirstHeaderMain"
         style="@style/HeaderTextView"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="@string/FirstMainHeader"
         android:textAlignment="textStart"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="24dp" />
 
     <TextView
         android:id="@+id/SecondMainHeader"
         style="@style/Header2TextView"
-        android:layout_width="375dp"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="@string/SecondMainHeader"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FirstHeaderMain"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="375dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:textAlignment="textStart"
         android:textDirection="locale"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SecondMainHeader" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

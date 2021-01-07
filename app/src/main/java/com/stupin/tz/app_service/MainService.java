@@ -1,45 +1,71 @@
 package com.stupin.tz.app_service;
 
+import android.app.Activity;
+
 import androidx.annotation.NonNull;
 
+import com.stupin.tz.DoctorListAdapter;
 import com.stupin.tz.MainActivity;
 import com.stupin.tz.R;
+import com.stupin.tz.entities.DOCTOR;
 import com.stupin.tz.entities.SERVICE;
 import com.stupin.tz.entities.SERVICE_GROUP;
 import com.stupin.tz.entities.SERVICE_TYPE;
 import com.stupin.tz.entities.WORKER;
 
 import java.security.Provider;
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainService {
-    private List<WORKER> workerList;
-    private List<SERVICE> serviceList;
-    private List<SERVICE_GROUP> serviceGroups;
-    private List<SERVICE_TYPE> serviceTypes;
+    private ArrayList<DOCTOR> doctorArrayList;
+    private ArrayList<WORKER> workerArrayList;
+    private ArrayList<SERVICE> serviceArrayList;
+    private ArrayList<SERVICE_GROUP> serviceGroups;
+    private ArrayList<SERVICE_TYPE> serviceTypes;
     private MainActivity activity;
 
     public MainService(MainActivity activity) {
         this.activity = activity;
-        this.workerList = null;
-        this.serviceList = null;
-        this.serviceGroups = null;
-        this.serviceTypes = null;
+        this.workerArrayList  = new ArrayList<>();
+        this.serviceArrayList = new ArrayList<>();
+        this.serviceGroups    = new ArrayList<>();
+        this.serviceTypes     = new ArrayList<>();
+        this.doctorArrayList  = new ArrayList<>();
     }
 
-    public void updWorkersList(){
-        NetworkService.getInstanse().getAPI().getWorkers(1, 1).enqueue(
-        new Callback<List<WORKER>>() {
+    public ArrayList<DOCTOR> getDoctorArrayList() {
+        return doctorArrayList;
+    }
+
+    public ArrayList<WORKER> getWorkerArrayList() {
+        return workerArrayList;
+    }
+
+    public ArrayList<SERVICE> getServiceArrayList() {
+        return serviceArrayList;
+    }
+
+    public ArrayList<SERVICE_GROUP> getServiceGroups() {
+        return serviceGroups;
+    }
+
+    public ArrayList<SERVICE_TYPE> getServiceTypes() {
+        return serviceTypes;
+    }
+
+    public void updAllDoctorArrayList(){
+        NetworkService.getInstanse().getAPI().getAllDoctor(1,1).enqueue(new Callback<ArrayList<DOCTOR>>() {
             @Override
-            public void onResponse(Call<List<WORKER>> call, Response<List<WORKER>> response) {
+            public void onResponse(Call<ArrayList<DOCTOR>> call, Response<ArrayList<DOCTOR>> response) {
                 if (response.isSuccessful()){
                     try {
                         response.body().isEmpty();
-                        workerList = response.body();
+                        doctorArrayList.addAll(response.body());
+                        activity.initSpinner();
                     }
                     catch (NullPointerException e){
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
@@ -52,20 +78,46 @@ public class MainService {
             }
 
             @Override
-            public void onFailure(Call<List<WORKER>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<DOCTOR>> call, Throwable t) {
                 activity.showMessage(activity.getString(R.string.BadResponseAnswer));
             }
         });
     }
-    public void updServiceList(){
+    public void updWorkersArrayList(){
+        NetworkService.getInstanse().getAPI().getWorkers(1, 1).enqueue(
+        new Callback<ArrayList<WORKER>>() {
+            @Override
+            public void onResponse(Call<ArrayList<WORKER>> call, Response<ArrayList<WORKER>> response) {
+                if (response.isSuccessful()){
+                    try {
+                        response.body().isEmpty();
+                        workerArrayList.addAll(response.body());
+                    }
+                    catch (NullPointerException e){
+                        activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                    }
+                }
+                else{
+                    activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                    onFailure(call, new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<WORKER>> call, Throwable t) {
+                activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+            }
+        });
+    }
+    public void updServiceArrayList(){
         NetworkService.getInstanse().getAPI().getService(1, 2).enqueue(
-                new Callback<List<SERVICE>>() {
+                new Callback<ArrayList<SERVICE>>() {
                     @Override
-                    public void onResponse(Call<List<SERVICE>> call, Response<List<SERVICE>> response) {
+                    public void onResponse(Call<ArrayList<SERVICE>> call, Response<ArrayList<SERVICE>> response) {
                         if (response.isSuccessful()){
                             try {
                                 response.body().isEmpty();
-                                serviceList = response.body();
+                                serviceArrayList.addAll(response.body());
                             }
                             catch (NullPointerException e){
                                 activity.showMessage(activity.getString(R.string.BadResponseAnswer));
@@ -78,19 +130,19 @@ public class MainService {
                     }
 
                     @Override
-                    public void onFailure(Call<List<SERVICE>> call, Throwable t) {
+                    public void onFailure(Call<ArrayList<SERVICE>> call, Throwable t) {
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
                     }
                 });
     }
-    public void updServiceGroupsList(){
-        NetworkService.getInstanse().getAPI().getServiceGroup(1).enqueue(new Callback<List<SERVICE_GROUP>>() {
+    public void updServiceGroupsArrayList(){
+        NetworkService.getInstanse().getAPI().getServiceGroup(1).enqueue(new Callback<ArrayList<SERVICE_GROUP>>() {
             @Override
-            public void onResponse(Call<List<SERVICE_GROUP>> call, Response<List<SERVICE_GROUP>> response) {
+            public void onResponse(Call<ArrayList<SERVICE_GROUP>> call, Response<ArrayList<SERVICE_GROUP>> response) {
                 if (response.isSuccessful()){
                     try {
                         response.body().isEmpty();
-                        serviceGroups = response.body();
+                        serviceGroups.addAll(response.body());
                     }
                     catch (NullPointerException e){
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
@@ -103,19 +155,19 @@ public class MainService {
             }
 
             @Override
-            public void onFailure(Call<List<SERVICE_GROUP>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<SERVICE_GROUP>> call, Throwable t) {
                 activity.showMessage(activity.getString(R.string.BadResponseAnswer));
             }
         });
     }
-    public void updServiceTypesList(){
-        NetworkService.getInstanse().getAPI().getServiceType().enqueue(new Callback<List<SERVICE_TYPE>>() {
+    public void updServiceTypesArrayList(){
+        NetworkService.getInstanse().getAPI().getServiceType().enqueue(new Callback<ArrayList<SERVICE_TYPE>>() {
             @Override
-            public void onResponse(Call<List<SERVICE_TYPE>> call, Response<List<SERVICE_TYPE>> response) {
+            public void onResponse(Call<ArrayList<SERVICE_TYPE>> call, Response<ArrayList<SERVICE_TYPE>> response) {
                 if (response.isSuccessful()){
                     try {
                         response.body().isEmpty();
-                        serviceTypes = response.body();
+                        serviceTypes.addAll(response.body());
                     }
                     catch (NullPointerException e){
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
@@ -128,7 +180,7 @@ public class MainService {
             }
 
             @Override
-            public void onFailure(Call<List<SERVICE_TYPE>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<SERVICE_TYPE>> call, Throwable t) {
                 activity.showMessage(activity.getString(R.string.BadResponseAnswer));
             }
         });
