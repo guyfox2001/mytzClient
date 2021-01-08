@@ -1,10 +1,5 @@
 package com.stupin.tz.app_service;
 
-import android.app.Activity;
-
-import androidx.annotation.NonNull;
-
-import com.stupin.tz.DoctorListAdapter;
 import com.stupin.tz.MainActivity;
 import com.stupin.tz.R;
 import com.stupin.tz.entities.DOCTOR;
@@ -13,7 +8,6 @@ import com.stupin.tz.entities.SERVICE_GROUP;
 import com.stupin.tz.entities.SERVICE_TYPE;
 import com.stupin.tz.entities.WORKER;
 
-import java.security.Provider;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -41,9 +35,7 @@ public class MainService {
         return doctorArrayList;
     }
 
-    public ArrayList<WORKER> getWorkerArrayList() {
-        return workerArrayList;
-    }
+    public ArrayList<WORKER> getWorkerArrayList() { return workerArrayList; }
 
     public ArrayList<SERVICE> getServiceArrayList() {
         return serviceArrayList;
@@ -92,6 +84,7 @@ public class MainService {
                     try {
                         response.body().isEmpty();
                         workerArrayList.addAll(response.body());
+                        //activity.initRecyclerView();
                     }
                     catch (NullPointerException e){
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
@@ -184,5 +177,15 @@ public class MainService {
                 activity.showMessage(activity.getString(R.string.BadResponseAnswer));
             }
         });
+    }
+    public ArrayList<WORKER> onFilterWorkers (int idChoiced){
+        ArrayList<WORKER> item = new ArrayList<>();
+        for (WORKER iter:
+            this.workerArrayList) {
+            if(iter.getId() == idChoiced){
+                item.add(iter);
+            }
+        }
+        return item;
     }
 }

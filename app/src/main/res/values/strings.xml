@@ -3,4 +3,10 @@
     <string name="FirstMainHeader">Врачи</string>
     <string name="SecondMainHeader">Детская практика</string>
     <string name="BadResponseAnswer">Получены плохие данные. Повторите попытку позже</string>
+    <string name="simple_doctor_specialization">doctor_specialization</string>
+    <string name="simple_doctor_name">doctor_name</string>
+    <string name="simple_doctor_deegree">doctor_deegree</string>
+    <string name="write_button_text">Записаться на приём</string>
+    <string name="info_button_text">Инфо</string>
+    <string name="empty_filter">По данному фильтру отсутствует приём</string>
 </resources>

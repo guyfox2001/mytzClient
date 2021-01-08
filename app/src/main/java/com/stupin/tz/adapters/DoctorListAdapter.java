@@ -1,4 +1,4 @@
-package com.stupin.tz;
+package com.stupin.tz.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.stupin.tz.R;
 import com.stupin.tz.entities.DOCTOR;
 
 import java.util.ArrayList;
