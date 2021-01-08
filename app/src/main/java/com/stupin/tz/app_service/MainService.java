@@ -1,6 +1,6 @@
 package com.stupin.tz.app_service;
 
-import com.stupin.tz.MainActivity;
+import com.stupin.tz.activities.MainActivity;
 import com.stupin.tz.R;
 import com.stupin.tz.entities.DOCTOR;
 import com.stupin.tz.entities.SERVICE;

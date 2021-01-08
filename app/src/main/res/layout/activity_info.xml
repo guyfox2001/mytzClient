@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/spinner_dropdown_item_background"
+    android:orientation="vertical"
+    tools:context=".activities.InfoActivity" >
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/simple_avatar" />
+
+    <TextView
+        android:id="@+id/doctor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/spinner_dropdown_item_background"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/simple_doctor_name"
+        android:textColor="@color/colorLightSkyBlue"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/doctor_deegree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/spinner_dropdown_item_background"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/simple_doctor_deegree"
+        android:textColor="@color/colorLightSkyBlue"
+        android:textSize="24sp" />
+
+
+
+    <Button
+        android:id="@+id/write_button"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="@string/write_button_text"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-condensed-medium"
+         />
+    <TextView
+        android:id="@+id/exp_work_text"
+        android:background="@drawable/spinner_dropdown_item_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="16sp"
+        android:text="@string/exp_work"
+        android:textColor="@color/colorLightSkyBlue"
+        android:fontFamily="sans-serif-condensed-medium"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/doctor_descr"
+        android:background="@drawable/borders_for_info_text"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="4dp"
+        android:text="@string/simple_doctor_work_exp"
+        android:textColor="@color/colorLightSkyBlue"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_specialization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/spinner_dropdown_item_background"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/text_specialization"
+        android:textColor="@color/colorLightSkyBlue"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/doctor_specialization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/borders_for_info_text"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="4dp"
+        android:text="@string/simple_doctor_work_exp"
+        android:textColor="@color/colorLightSkyBlue"
+        android:textStyle="bold" />
+
+</LinearLayout>

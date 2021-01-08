@@ -1,8 +1,12 @@
 package com.stupin.tz.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class WORKER {
+public class WORKER implements Parcelable {
     private int id;
     private String name;
     private String photo;//фото врача в формате BASE64, «-1» - если фото отсутствует
@@ -29,6 +33,33 @@ public class WORKER {
         this.services = services;
         this.DOCT_IDs = DOCT_IDs;
     }
+
+    protected WORKER(Parcel in) {
+        id = in.readInt();
+        desc = in.readString();
+        name = in.readString();
+        photo = in.readString();
+        specialization = in.readString();
+        qualification = in.readString();
+        services = in.readString();
+        Integer size = in.readInt();
+        DOCT_IDs = new ArrayList<>();
+        for (int i =0 ; i<size; i++){
+            DOCT_IDs.add(in.readInt());
+        }
+    }
+
+    public static final Creator<WORKER> CREATOR = new Creator<WORKER>() {
+        @Override
+        public WORKER createFromParcel(Parcel in) {
+            return new WORKER(in);
+        }
+
+        @Override
+        public WORKER[] newArray(int size) {
+            return new WORKER[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -92,5 +123,25 @@ public class WORKER {
 
     public void setDOCT_IDs(List<Integer> DOCT_IDs) {
         this.DOCT_IDs = DOCT_IDs;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeCharArray(this.desc.toCharArray());
+        dest.writeCharArray(this.name.toCharArray());
+        dest.writeCharArray(this.photo.toCharArray());
+        dest.writeCharArray(this.specialization.toCharArray());
+        dest.writeCharArray(this.qualification.toCharArray());
+        dest.writeCharArray(this.services.toCharArray());
+        dest.writeInt(this.DOCT_IDs.size());
+        for (Integer iter : this.DOCT_IDs) {
+            dest.writeInt(iter);
+        }
     }
 }

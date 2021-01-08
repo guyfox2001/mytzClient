@@ -9,4 +9,7 @@
     <string name="write_button_text">Записаться на приём</string>
     <string name="info_button_text">Инфо</string>
     <string name="empty_filter">По данному фильтру отсутствует приём</string>
+    <string name="exp_work">Опыт работы: </string>
+    <string name="simple_doctor_work_exp">doctor_work_exp</string>
+    <string name="text_specialization">Услуги: </string>
 </resources>
