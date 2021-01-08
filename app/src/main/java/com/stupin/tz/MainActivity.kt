@@ -41,26 +41,18 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected( parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val item = spinner.selectedItem as DOCTOR;
                 ChoicedId = item.id;
-                initRecyclerView();
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
 
             }
         }
+
+
     }
     fun initRecyclerView(){
-        var item:ArrayList<WORKER> = mainService.onFilterWorkers(this.ChoicedId)
-        if (item.size != 0){
-            val adapter= WorkersViewAdapters(item, this);
-            this.recyclerView.layoutManager = LinearLayoutManager(this);
-            this.recyclerView.adapter = adapter;
-        }
-        else {
-            showMessage(getString(R.string.empty_filter))
-            val adapter= WorkersViewAdapters(item, this);
-            this.recyclerView.layoutManager = LinearLayoutManager(this);
-            this.recyclerView.adapter = adapter;
-        }
+        val adapter= WorkersViewAdapters(mainService.workerArrayList, this);
+        this.recyclerView.layoutManager = LinearLayoutManager(this);
+        this.recyclerView.adapter = adapter;
     }
     fun showMessage(StringMessage: String){
         Toast.makeText(this, StringMessage, Toast.LENGTH_SHORT).show();

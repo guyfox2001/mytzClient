@@ -39,10 +39,13 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
     @Override
     public void onBindViewHolder(@NonNull NonEmptyViewHolder holder, int position) {
             WORKER item = mData.get(position);
-            if(!item.getPhoto().contains("-1")) {
+            if(!item.getPhoto().equals("-1")) {
                 byte[] imgArr = Base64.decode(item.getPhoto(), Base64.DEFAULT);
                 Bitmap bmp = BitmapFactory.decodeByteArray(imgArr,0, imgArr.length);
                 holder.workerPhoto.setImageBitmap(bmp);
+            }
+            else{
+                    holder.workerPhoto.setImageDrawable(mContext.getDrawable(R.drawable.simple_avatar));
             }
             if (item.getQualification() != ""){
                 holder.workerDegree.setText(item.getQualification());

@@ -84,7 +84,7 @@ public class MainService {
                     try {
                         response.body().isEmpty();
                         workerArrayList.addAll(response.body());
-                        //activity.initRecyclerView();
+                        activity.initRecyclerView();
                     }
                     catch (NullPointerException e){
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
@@ -182,7 +182,7 @@ public class MainService {
         ArrayList<WORKER> item = new ArrayList<>();
         for (WORKER iter:
             this.workerArrayList) {
-            if(iter.getId() == idChoiced){
+            if(iter.getDOCT_IDs().contains(idChoiced)){
                 item.add(iter);
             }
         }
