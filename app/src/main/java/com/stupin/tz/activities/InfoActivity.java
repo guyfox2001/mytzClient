@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.stupin.tz.R;
@@ -26,11 +27,15 @@ public class InfoActivity extends AppCompatActivity {
         Input = WORKER.getmInstance();
         //Input = (WORKER) savedInstanceState.getSerializable("InfoWorker");
         //Input = Objects.requireNonNull(getIntent().getExtras()).getParcelable( "InfoWorker");
+        LinearLayout layout = findViewById(R.id.main_layout);
         ImageView doctor_photo = findViewById(R.id.doctor_photo_on_activity);
         TextView docName = findViewById(R.id.doctor_name);
         TextView docDeegree = findViewById(R.id.doctor_deegree);
         TextView docDec = findViewById(R.id.doctor_descr);
         TextView docSpec = findViewById(R.id.doctor_specialization);
+        TextView expText = findViewById(R.id.exp_work_text);
+        TextView specText = findViewById(R.id.text_specialization);
+        //layout.removeView(expText);
         if(!Input.getPhoto().equals("-1")) {
             byte[] imgArr = Base64.decode(Input.getPhoto(), Base64.DEFAULT);
             Bitmap bmp = BitmapFactory.decodeByteArray(imgArr,0, imgArr.length);
@@ -41,16 +46,35 @@ public class InfoActivity extends AppCompatActivity {
         }
         if (!Input.getName().equals("")){
             docName.setText(Input.getName());
-        } else docName.setText(R.string.simple_doctor_name);
-        if (!Input.getQualification().equals("")){
+        }
+        else {
+            layout.removeView(docName);
+            //docName.setText(R.string.simple_doctor_name);
+        }
+
+        if (!Input.getQualification().equals("")&& !Input.getQualification().equals("-1")){
             docDeegree.setText(Input.getQualification());
-        } else docDeegree.setText(R.string.simple_doctor_deegree);
-        if (!Input.getDesc().equals("")){
+        }
+        else {
+            layout.removeView(docDeegree);
+            //docDeegree.setText(R.string.simple_doctor_deegree);
+        }
+
+        if (!Input.getDesc().equals("") && !Input.getDesc().equals("-1")){
+
             docDec.setText(Input.getDesc());
-        } else docDec.setText(R.string.simple_doctor_work_exp);
-        if (!Input.getSpecialization().equals("")){
+        } else {
+            layout.removeView(docDec);
+            layout.removeView(expText);
+            //docDec.setText(R.string.simple_doctor_work_exp);
+        }
+        if (!Input.getServices().equals("") && !Input.getServices().equals("-1")){
             docSpec.setText(Input.getSpecialization());
-        } else docSpec.setText(R.string.simple_doctor_specialization);
+        } else {
+            layout.removeView(specText);
+            layout.removeView(docSpec);
+            //docSpec.setText(R.string.simple_doctor_specialization);
+        }
 
     }
 }
