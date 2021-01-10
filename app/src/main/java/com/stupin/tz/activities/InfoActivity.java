@@ -23,8 +23,9 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        Input = Objects.requireNonNull(getIntent().getExtras()).getParcelable( "InfoWorker");
-        ImageView doctor_photo = findViewById(R.id.imageView2);
+        Input = (WORKER) savedInstanceState.getSerializable("InfoWorker");
+        //Input = Objects.requireNonNull(getIntent().getExtras()).getParcelable( "InfoWorker");
+        ImageView doctor_photo = findViewById(R.id.doctor_photo_on_activity);
         TextView docName = findViewById(R.id.doctor_name);
         TextView docDeegree = findViewById(R.id.doctor_deegree);
         TextView docDec = findViewById(R.id.doctor_descr);

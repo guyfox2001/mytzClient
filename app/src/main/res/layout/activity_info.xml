@@ -9,12 +9,17 @@
     tools:context=".activities.InfoActivity" >
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/simple_avatar" />
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/doctor_photo_on_activity"
+        android:layout_width="88dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/simple_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/doctor_name"
@@ -22,10 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/spinner_dropdown_item_background"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/simple_doctor_name"
-        android:textColor="@color/colorLightSkyBlue"
+        android:textColor="@color/colorBlack"
         android:textSize="24dp" />
 
     <TextView
@@ -35,10 +40,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/spinner_dropdown_item_background"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/simple_doctor_deegree"
-        android:textColor="@color/colorLightSkyBlue"
+        android:textColor="@color/colorBlack"
         android:textSize="24sp" />
 
 
@@ -50,7 +54,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@drawable/write_button"
         android:text="@string/write_button_text"
         android:textSize="20sp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -65,7 +69,7 @@
         android:layout_marginLeft="16dp"
         android:textSize="16sp"
         android:text="@string/exp_work"
-        android:textColor="@color/colorLightSkyBlue"
+        android:textColor="@color/colorBlack"
         android:fontFamily="sans-serif-condensed-medium"/>
 
     <TextView
@@ -79,7 +83,7 @@
         android:fontFamily="sans-serif-condensed-medium"
         android:padding="4dp"
         android:text="@string/simple_doctor_work_exp"
-        android:textColor="@color/colorLightSkyBlue"
+        android:textColor="@color/colorBlack"
         android:textStyle="bold" />
 
     <TextView
@@ -92,7 +96,7 @@
         android:background="@drawable/spinner_dropdown_item_background"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/text_specialization"
-        android:textColor="@color/colorLightSkyBlue"
+        android:textColor="@color/colorBlack"
         android:textSize="16sp" />
     <TextView
         android:id="@+id/doctor_specialization"
@@ -105,7 +109,7 @@
         android:fontFamily="sans-serif-condensed-medium"
         android:padding="4dp"
         android:text="@string/simple_doctor_work_exp"
-        android:textColor="@color/colorLightSkyBlue"
+        android:textColor="@color/colorBlack"
         android:textStyle="bold" />
 
 </LinearLayout>

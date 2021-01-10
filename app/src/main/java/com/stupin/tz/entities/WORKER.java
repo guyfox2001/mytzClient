@@ -3,6 +3,8 @@ package com.stupin.tz.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,15 @@ public class WORKER implements Parcelable {
     private String qualification; // квалификация
     private String services;  // оказываемые услуги
     private List<Integer> DOCT_IDs;  // список идентификаторов специальностей врача
+    private static WORKER mInstance;
+
+    public static WORKER getmInstance() {
+        return mInstance;
+    }
+
+    public static void setmInstance(WORKER mInstance) {
+        WORKER.mInstance = mInstance;
+    }
 
     public WORKER(int id,
                   String name,
@@ -131,7 +142,7 @@ public class WORKER implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NotNull Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeCharArray(this.desc.toCharArray());
         dest.writeCharArray(this.name.toCharArray());
