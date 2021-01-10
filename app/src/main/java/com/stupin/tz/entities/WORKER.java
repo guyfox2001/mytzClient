@@ -43,6 +43,7 @@ public class WORKER implements Parcelable {
         this.qualification = qualification;
         this.services = services;
         this.DOCT_IDs = DOCT_IDs;
+        mInstance = this;
     }
 
     protected WORKER(Parcel in) {

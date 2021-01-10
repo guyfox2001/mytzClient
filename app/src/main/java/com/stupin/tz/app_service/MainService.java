@@ -50,57 +50,57 @@ public class MainService {
     }
 
     public void updAllDoctorArrayList(){
-        NetworkService.getInstanse().getAPI().getAllDoctor(1,1).enqueue(new Callback<ArrayList<DOCTOR>>() {
-            @Override
-            public void onResponse(Call<ArrayList<DOCTOR>> call, Response<ArrayList<DOCTOR>> response) {
-                if (response.isSuccessful()){
-                    try {
-                        response.body().isEmpty();
-                        doctorArrayList.addAll(response.body());
-                        activity.initSpinner();
-                    }
-                    catch (NullPointerException e){
+        if(this.doctorArrayList.size() == 0) {
+            NetworkService.getInstanse().getAPI().getAllDoctor(1, 1).enqueue(new Callback<ArrayList<DOCTOR>>() {
+                @Override
+                public void onResponse(Call<ArrayList<DOCTOR>> call, Response<ArrayList<DOCTOR>> response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            response.body().isEmpty();
+                            doctorArrayList.addAll(response.body());
+                            activity.initSpinner();
+                        } catch (NullPointerException e) {
+                            activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                        }
+                    } else {
                         activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                        onFailure(call, new Throwable(response.message()));
                     }
                 }
-                else{
-                    activity.showMessage(activity.getString(R.string.BadResponseAnswer));
-                    onFailure(call, new Throwable(response.message()));
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ArrayList<DOCTOR>> call, Throwable t) {
-                activity.showMessage(activity.getString(R.string.BadResponseAnswer));
-            }
-        });
+                @Override
+                public void onFailure(Call<ArrayList<DOCTOR>> call, Throwable t) {
+                    activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                }
+            });
+        }
     }
     public void updWorkersArrayList(){
-        NetworkService.getInstanse().getAPI().getWorkers(1, 1).enqueue(
-        new Callback<ArrayList<WORKER>>() {
-            @Override
-            public void onResponse(Call<ArrayList<WORKER>> call, Response<ArrayList<WORKER>> response) {
-                if (response.isSuccessful()){
-                    try {
-                        response.body().isEmpty();
-                        workerArrayList.addAll(response.body());
-                        activity.initRecyclerView();
-                    }
-                    catch (NullPointerException e){
-                        activity.showMessage(activity.getString(R.string.BadResponseAnswer));
-                    }
-                }
-                else{
-                    activity.showMessage(activity.getString(R.string.BadResponseAnswer));
-                    onFailure(call, new Throwable(response.message()));
-                }
-            }
+        if(this.workerArrayList.size() == 0) {
+            NetworkService.getInstanse().getAPI().getWorkers(1, 1).enqueue(
+                    new Callback<ArrayList<WORKER>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<WORKER>> call, Response<ArrayList<WORKER>> response) {
+                            if (response.isSuccessful()) {
+                                try {
+                                    response.body().isEmpty();
+                                    workerArrayList.addAll(response.body());
+                                    activity.initRecyclerView();
+                                } catch (NullPointerException e) {
+                                    activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                                }
+                            } else {
+                                activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                                onFailure(call, new Throwable(response.message()));
+                            }
+                        }
 
-            @Override
-            public void onFailure(Call<ArrayList<WORKER>> call, Throwable t) {
-                activity.showMessage(activity.getString(R.string.BadResponseAnswer));
-            }
-        });
+                        @Override
+                        public void onFailure(Call<ArrayList<WORKER>> call, Throwable t) {
+                            activity.showMessage(activity.getString(R.string.BadResponseAnswer));
+                        }
+                    });
+        }
     }
     public void updServiceArrayList(){
         NetworkService.getInstanse().getAPI().getService(1, 2).enqueue(

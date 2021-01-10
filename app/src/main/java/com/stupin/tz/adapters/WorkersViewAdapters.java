@@ -100,6 +100,7 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
             infoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    WORKER.setmInstance(item);
                     ib.onInfoButtonClick(item);
                 }
             });
