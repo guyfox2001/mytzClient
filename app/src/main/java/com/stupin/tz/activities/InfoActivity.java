@@ -25,8 +25,6 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         Input = WORKER.getmInstance();
-        //Input = (WORKER) savedInstanceState.getSerializable("InfoWorker");
-        //Input = Objects.requireNonNull(getIntent().getExtras()).getParcelable( "InfoWorker");
         LinearLayout layout = findViewById(R.id.main_layout);
         ImageView doctor_photo = findViewById(R.id.doctor_photo_on_activity);
         TextView docName = findViewById(R.id.doctor_name);
@@ -35,7 +33,6 @@ public class InfoActivity extends AppCompatActivity {
         TextView docSpec = findViewById(R.id.doctor_specialization);
         TextView expText = findViewById(R.id.exp_work_text);
         TextView specText = findViewById(R.id.text_specialization);
-        //layout.removeView(expText);
         if(!Input.getPhoto().equals("-1")) {
             byte[] imgArr = Base64.decode(Input.getPhoto(), Base64.DEFAULT);
             Bitmap bmp = BitmapFactory.decodeByteArray(imgArr,0, imgArr.length);
@@ -49,7 +46,6 @@ public class InfoActivity extends AppCompatActivity {
         }
         else {
             layout.removeView(docName);
-            //docName.setText(R.string.simple_doctor_name);
         }
 
         if (!Input.getQualification().equals("")&& !Input.getQualification().equals("-1")){
@@ -57,7 +53,6 @@ public class InfoActivity extends AppCompatActivity {
         }
         else {
             layout.removeView(docDeegree);
-            //docDeegree.setText(R.string.simple_doctor_deegree);
         }
 
         if (!Input.getDesc().equals("") && !Input.getDesc().equals("-1")){
@@ -66,14 +61,12 @@ public class InfoActivity extends AppCompatActivity {
         } else {
             layout.removeView(docDec);
             layout.removeView(expText);
-            //docDec.setText(R.string.simple_doctor_work_exp);
         }
         if (!Input.getServices().equals("") && !Input.getServices().equals("-1")){
-            docSpec.setText(Input.getSpecialization());
+            docSpec.setText(Input.getServices());
         } else {
             layout.removeView(specText);
             layout.removeView(docSpec);
-            //docSpec.setText(R.string.simple_doctor_specialization);
         }
 
     }

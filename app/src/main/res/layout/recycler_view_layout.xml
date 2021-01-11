@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/info_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/spinner_item_background">
@@ -49,7 +50,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctor_photo" />
+        app:layout_constraintTop_toBottomOf="@+id/doctor_photo"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/doctor_deegree"

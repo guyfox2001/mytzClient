@@ -1,5 +1,6 @@
 package com.stupin.tz.adapters;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -11,11 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.solver.state.State;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.stupin.tz.activities.MainActivity;
 import com.stupin.tz.R;
 import com.stupin.tz.entities.WORKER;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -23,12 +29,14 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
     private LayoutInflater mInflater;
     private ArrayList<WORKER> mData;
     private MainActivity mContext;
+    private static View mView;
 
-    public WorkersViewAdapters( ArrayList<WORKER> mData, MainActivity mContext) {
+    public WorkersViewAdapters(ArrayList<WORKER> mData, @NotNull MainActivity mContext) {
         this.mData = mData;
         this.mContext = mContext;
         this.mInflater = mContext.getLayoutInflater();
     }
+
 
     public void setmData(ArrayList<WORKER> mData) {
         this.mData = mData;
@@ -38,18 +46,19 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
     @NonNull
     @Override
     public NonEmptyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recycler_view_layout, parent, false);
-        return new NonEmptyViewHolder(view);
+        this.mView = mInflater.inflate(R.layout.recycler_view_layout, parent, false);
+        return new NonEmptyViewHolder(mView);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull NonEmptyViewHolder holder, int position) {
             WORKER item = mData.get(position);
-            if(!item.getName().equals("")){
+            if(!item.getName().equals("")&& !item.getName().equals("-1")){
                 holder.workerName.setText(item.getName());
             }
             else{
-                holder.workerName.setText(R.string.simple_doctor_name);
+                //holder.workerName.setText(R.string.simple_doctor_name);
             }
             if(!item.getPhoto().equals("-1")) {
                 byte[] imgArr = Base64.decode(item.getPhoto(), Base64.DEFAULT);
@@ -59,16 +68,20 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
             else{
                     holder.workerPhoto.setImageDrawable(mContext.getDrawable(R.drawable.simple_avatar));
             }
-            if (!item.getQualification().equals("")){
+            if (!item.getQualification().equals("")&& !item.getQualification().equals("-1")){
                 holder.workerDegree.setText(item.getQualification());
             }
             else {
-                holder.workerDegree.setText(R.string.simple_doctor_deegree);
+
+                //mRView.getLayoutManager().removeAllViews();
+                holder.workerDegree.setVisibility(View.GONE);
             }
-            if(!item.getSpecialization().equals("")) {
+            if(!item.getSpecialization().equals("") &&  !item.getSpecialization().equals("-1")) {
                 holder.workerSpecialization.setText(item.getSpecialization());
             }
-            else holder.workerSpecialization.setText(R.string.simple_doctor_specialization);
+            else {
+                holder.workerSpecialization.setVisibility(View.GONE);
+            }
             holder.bind(mContext, mContext, item);
 
     }
@@ -81,6 +94,7 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
         final ImageView workerPhoto;
         final TextView workerSpecialization, workerDegree, workerName;
         final Button writeButton, infoButton;
+        final View mView;
         NonEmptyViewHolder(View view){
             super(view);
             workerPhoto = view.findViewById(R.id.doctor_photo);
@@ -89,6 +103,7 @@ public class WorkersViewAdapters extends RecyclerView.Adapter<WorkersViewAdapter
             workerDegree = view.findViewById(R.id.doctor_deegree);
             writeButton = view.findViewById(R.id.write_button);
             infoButton = view.findViewById(R.id.info_button);
+            mView = view;
         }
         public  void bind(final OnWriteButtonClick wb, final OnInfoButtonClick ib, final WORKER item){
             writeButton.setOnClickListener(new View.OnClickListener() {

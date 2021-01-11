@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.stupin.tz.R
 import com.stupin.tz.adapters.DoctorListAdapter
 import com.stupin.tz.adapters.WorkersViewAdapters
@@ -17,13 +20,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), WorkersViewAdapters.OnInfoButtonClick, WorkersViewAdapters.OnWriteButtonClick {
     var ChoicedId:Int = -1;
-
     val mainService:MainService = MainService(this)
     lateinit var adapter : WorkersViewAdapters;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
     }
     fun get_ChoicedId() : Int{
         return this.ChoicedId;
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity(), WorkersViewAdapters.OnInfoButtonClick,
                     adapter.setmData(aList);
                 }
                 else {
-                    adapter= WorkersViewAdapters(aList, this@MainActivity);
+                    adapter= WorkersViewAdapters(aList, this@MainActivity)
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {

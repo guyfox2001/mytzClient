@@ -99,18 +99,26 @@
         android:textColor="@color/colorBlack"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/doctor_specialization"
+
+    <ScrollView
+        android:id="@+id/scroll_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/borders_for_info_text"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:padding="4dp"
-        android:text="@string/simple_doctor_work_exp"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:background="@drawable/borders_for_info_text">
+
+        <TextView
+            android:id="@+id/doctor_specialization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:padding="4dp"
+            android:text="@string/simple_doctor_work_exp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold" />
+    </ScrollView>
 
 </LinearLayout>
